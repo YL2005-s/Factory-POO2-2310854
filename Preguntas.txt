@@ -1,0 +1,14 @@
+¿Cómo el patrón Factory facilita añadir el nuevo canal de voz?
+El patrón Factory facilita la incorporación de nuevos canales, como el de voz, encapsulando la lógica de creación de objetos en clases separadas, para añadir el canal de voz, solo fue necesario crear una
+nueva clase concreta (VozNotificacion) que implemente la interfaz Notificacion, y una fábrica (VozNotificacionFactory) que se encargue de su instanciación, esto permite respetar el principio de abierto/cerrado, 
+ya que no se modificó el código existente, sino que se extendió el comportamiento mediante nuevas clases. El Factory desacopla la creación del uso, permitiendo que el sistema sea flexible y fácil de mantener.
+
+¿Qué cambios mínimos se necesitan para añadir WhatsApp?
+Para agregar soporte para WhatsApp, solo se necesita implementar una nueva clase que represente el canal (WhatsAppNotificacion) siguiendo la interfaz Notificacion, y su correspondiente fábrica 
+(WhatsAppNotificacionFactory) que implemente NotificacionFactory, luego de esto se registra esta nueva fábrica en el sistema, gracias al patrón Factory, no es necesario modificar ninguna clase de lógica 
+central, simplemente se incorporan nuevas piezas.
+
+¿Cómo manejaríamos notificaciones que combinan múltiples canales?
+Podemos crear una nueva clase NotificacionCompuesta que implemente la interfaz Notificacion, y contenga una lista de notificaciones individuales, esta clase simplemente invocaría el método enviar() 
+de cada canal incluido. El patrón Factory permite también crear una NotificacionCompuestaFactory, encargada de ensamblar esta lista de notificaciones a partir de las fábricas existentes, de este modo,
+podemos reutilizar las fábricas individuales y componer comportamientos más complejos sin romper la estructura del sistema.
